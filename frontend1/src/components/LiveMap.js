@@ -59,14 +59,14 @@ const LiveMap = () => {
   
   useEffect(() => {
     if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
-      mapRef.current.setView(currentPosition, 13);
+      mapRef.current.setView(currentPosition, 1);
     }
   }, [currentPosition]);
 
   return (
     <MapContainer 
       center={currentPosition} 
-      zoom={5} 
+      zoom={1} 
       style={{ height: "100vh", width: "100%" }}
       ref={mapRef}
     >
