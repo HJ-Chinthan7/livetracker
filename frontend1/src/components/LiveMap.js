@@ -24,7 +24,15 @@ const LiveMap = () => {
       const { latitude, longitude } = position.coords;
       setCurrentPosition([latitude, longitude]);
       socket.current.emit("send-Location", { latitude, longitude });
-    });
+    },
+  (error) => {
+    console.error("Geolocation error:", error);
+  },
+  {
+    enableHighAccuracy: true,
+    maximumAge: 0,
+    timeout: 1000
+  });
 
     socket.current.on("receive-location", (data) => {
       setUserMarkers((prevMarkers) => ({
@@ -58,7 +66,7 @@ const LiveMap = () => {
   return (
     <MapContainer 
       center={currentPosition} 
-      zoom={13} 
+      zoom={5} 
       style={{ height: "100vh", width: "100%" }}
       ref={mapRef}
     >
