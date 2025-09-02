@@ -56,11 +56,11 @@ const LiveMap = () => {
 
   const mapRef = useRef();
   
-  useEffect(() => {
-    if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
-      mapRef.current.setView(currentPosition, 13);
-    }
-  }, [currentPosition]);
+ useEffect(() => {
+  if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
+    mapRef.current.flyTo(currentPosition, 13, { animate: true, duration: 1.5 });
+  }
+}, [currentPosition]);
 
   return (
     <MapContainer 
