@@ -17,7 +17,7 @@ const LiveMap = () => {
   const socket = useRef(null);
 
   useEffect(() => {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+    const backendUrl ="https://livetracker-29qg.onrender.com";
     socket.current = io(backendUrl);
 
     navigator.geolocation.watchPosition((position) => {
@@ -46,14 +46,13 @@ const LiveMap = () => {
     };
   }, []);
 
-  // Auto-center map when position changes
   const mapRef = useRef();
   
-  useEffect(() => {
-    if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
-      mapRef.current.setView(currentPosition, 13);
-    }
-  }, [currentPosition]);
+ useEffect(() => {
+  if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
+    mapRef.current.flyTo(currentPosition, 13, { animate: true, duration: 1.5 });
+  }
+}, [currentPosition]);
 
   return (
     <MapContainer 
