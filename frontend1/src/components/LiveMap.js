@@ -55,17 +55,17 @@ const LiveMap = () => {
   }, []);
 
   const mapRef = useRef();
-  
+
  useEffect(() => {
   if (mapRef.current && currentPosition[0] !== 0 && currentPosition[1] !== 0) {
-    mapRef.current.flyTo(currentPosition, 13, { animate: true, duration: 1.5 });
+    mapRef.current.flyTo(currentPosition, 18, { animate: true, duration: 1.5 });
   }
 }, [currentPosition]);
 
   return (
     <MapContainer 
       center={currentPosition} 
-      zoom={1} 
+      zoom={18} 
       style={{ height: "100vh", width: "100%" }}
       ref={mapRef}
     >
